@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 from io import BytesIO
+import base64
+import os
 import corpnorm_utils as utils
 
 # =========================================================
@@ -27,6 +29,19 @@ def load_rules(path="rules_corpnorm.txt"):
 
 CONFIG = load_config()
 RULES = load_rules()
+
+# =========================================================
+# 1.5 Logo Loading
+# =========================================================
+
+def load_logo():
+    """Load and return the logo as base64 for reliable display"""
+    logo_path = os.path.join(os.path.dirname(__file__), "corpnorm_ai_logo.svg")
+    if os.path.exists(logo_path):
+        with open(logo_path, "r", encoding="utf-8") as f:
+            svg_content = f.read()
+        return svg_content
+    return None
 
 # =========================================================
 # 2. Main Streamlit App
@@ -58,9 +73,14 @@ def main():
     col1, col2 = st.columns([1, 3])
     
     with col1:
-        try:
-            st.image("corpnorm_ai_logo.svg", width=200)
-        except:
+        logo_svg = load_logo()
+        if logo_svg:
+            st.markdown(f"""
+                <div style="display: flex; justify-content: center; width: 100%;">
+                    {logo_svg}
+                </div>
+            """, unsafe_allow_html=True)
+        else:
             st.markdown("### 🕵️ CorpNorm AI")
     
     with col2:
@@ -80,10 +100,15 @@ def main():
     
     # --- Sidebar Configuration ---
     with st.sidebar:
-        try:
-            st.image("corpnorm_ai_logo.svg", width=180)
-        except:
-            pass
+        logo_svg = load_logo()
+        if logo_svg:
+            st.markdown(f"""
+                <div style="display: flex; justify-content: center; width: 100%; margin-bottom: 20px;">
+                    <div style="transform: scale(0.6); transform-origin: top center;">
+                        {logo_svg}
+                    </div>
+                </div>
+            """, unsafe_allow_html=True)
         st.header("⚙️ Configuration")
         
         # Mode Switch
