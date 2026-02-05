@@ -35,7 +35,40 @@ RULES = load_rules()
 def main():
     st.set_page_config(page_title="CorpNorm AI - Agentic", layout="wide", page_icon="🕵️")
     
-    st.title("🕵️ CorpNorm AI - Agentic Edition")
+    # --- Custom CSS Styling ---
+    st.markdown("""
+        <style>
+        .header-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .logo-section {
+            display: flex;
+            justify-content: center;
+        }
+        .brand-text {
+            color: #1F4B99;
+        }
+        </style>
+    """, unsafe_allow_html=True)
+    
+    # --- Header with Logo ---
+    col1, col2 = st.columns([1, 3])
+    
+    with col1:
+        try:
+            st.image("corpnorm_ai_logo.svg", width=200)
+        except:
+            st.markdown("### 🕵️ CorpNorm AI")
+    
+    with col2:
+        st.markdown("### CorpNorm AI - Agentic Edition")
+        st.markdown("**Agentic Intelligence for Global Data Verification**")
+    
+    st.divider()
+    
     st.markdown(
         """
         **Capabilities:**
@@ -46,18 +79,31 @@ def main():
     )
     
     # --- Sidebar Configuration ---
-    st.sidebar.header("⚙️ Configuration")
-    
-    # Mode Switch
-    mode = st.sidebar.radio("Processing Mode", ["Free (Agentic)", "Premium (AI+SerpAPI)"], index=0)
-    
-    serpapi_key = ""
-    openai_key = ""
-    
-    if mode == "Premium (AI+SerpAPI)":
-        st.sidebar.info("Premium mode uses SerpAPI (Google) for search and OpenAI for reasoning. High Accuracy.")
-        serpapi_key = st.sidebar.text_input("SerpAPI Key (Google)", value=CONFIG.get("serpapi_key", ""), type="password")
-        openai_key = st.sidebar.text_input("OpenAI API Key", value=CONFIG.get("openai_api_key", ""), type="password")
+    with st.sidebar:
+        try:
+            st.image("corpnorm_ai_logo.svg", width=180)
+        except:
+            pass
+        st.header("⚙️ Configuration")
+        
+        # Mode Switch
+        mode = st.radio("Processing Mode", ["Free (Agentic)", "Premium (AI+SerpAPI)"], index=0)
+        
+        serpapi_key = ""
+        openai_key = ""
+        
+        if mode == "Premium (AI+SerpAPI)":
+            st.info("Premium mode uses SerpAPI (Google) for search and OpenAI for reasoning. High Accuracy.")
+            serpapi_key = st.text_input("SerpAPI Key (Google)", value=CONFIG.get("serpapi_key", ""), type="password")
+            openai_key = st.text_input("OpenAI API Key", value=CONFIG.get("openai_api_key", ""), type="password")
+        
+        st.divider()
+        st.markdown("""
+            <div style='text-align: center; color: #999; font-size: 12px; margin-top: 20px;'>
+                <p><strong>CorpNorm AI</strong></p>
+                <p>Agentic Intelligence for Global Data Verification</p>
+            </div>
+        """, unsafe_allow_html=True)
     
     # Initialize Agent
     agent = utils.CompanyAgent()

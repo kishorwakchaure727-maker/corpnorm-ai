@@ -1,0 +1,102 @@
+<svg viewBox="0 0 1200 1400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700;400&family=Inter:wght@300;400;700&display=swap');
+      
+      .main-title {
+        font-family: 'Poppins', sans-serif;
+        font-size: 120px;
+        font-weight: 700;
+        fill: #1F4B99;
+        letter-spacing: -2px;
+      }
+      
+      .tagline {
+        font-family: 'Inter', sans-serif;
+        font-size: 36px;
+        font-weight: 300;
+        fill: #1F4B99;
+        letter-spacing: 1px;
+      }
+    </style>
+    
+    <!-- Gradient definitions -->
+    <linearGradient id="globeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1ABC9C;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1F4B99;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="magnifyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1F4B99;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1ABC9C;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- White background -->
+  <rect width="1200" height="1400" fill="white"/>
+  
+  <!-- Main Logo Container (Centered) -->
+  <g id="logo-group" transform="translate(600, 320)">
+    
+    <!-- Wireframe Globe -->
+    <g id="globe" transform="translate(0, 0)">
+      <!-- Outer circle of globe with teal -->
+      <circle cx="0" cy="0" r="140" fill="none" stroke="url(#globeGradient)" stroke-width="3" opacity="0.9"/>
+      
+      <!-- Inner wireframe circles -->
+      <circle cx="0" cy="0" r="120" fill="none" stroke="#1ABC9C" stroke-width="2" opacity="0.6"/>
+      <circle cx="0" cy="0" r="100" fill="none" stroke="#1ABC9C" stroke-width="1.5" opacity="0.4"/>
+      
+      <!-- Horizontal lines for grid effect -->
+      <ellipse cx="0" cy="0" rx="140" ry="50" fill="none" stroke="#1ABC9C" stroke-width="2" opacity="0.5"/>
+      <ellipse cx="0" cy="0" rx="140" ry="85" fill="none" stroke="#1ABC9C" stroke-width="1.5" opacity="0.4"/>
+      <ellipse cx="0" cy="0" rx="140" ry="110" fill="none" stroke="#1F4B99" stroke-width="1.5" opacity="0.3"/>
+      
+      <!-- Vertical lines for grid effect -->
+      <line x1="-80" y1="-120" x2="-80" y2="120" stroke="#1ABC9C" stroke-width="1.5" opacity="0.4"/>
+      <line x1="0" y1="-140" x2="0" y2="140" stroke="#1ABC9C" stroke-width="2" opacity="0.5"/>
+      <line x1="80" y1="-120" x2="80" y2="120" stroke="#1ABC9C" stroke-width="1.5" opacity="0.4"/>
+      
+      <!-- Curved meridian lines -->
+      <path d="M -100 -80 Q -120 0 -100 80" fill="none" stroke="#1ABC9C" stroke-width="1.5" opacity="0.35"/>
+      <path d="M 100 -80 Q 120 0 100 80" fill="none" stroke="#1ABC9C" stroke-width="1.5" opacity="0.35"/>
+      
+      <!-- Data points / nodes on globe -->
+      <circle cx="0" cy="-120" r="4" fill="#F5A623" opacity="0.8"/>
+      <circle cx="100" cy="60" r="3.5" fill="#F5A623" opacity="0.8"/>
+      <circle cx="-90" cy="75" r="3.5" fill="#F5A623" opacity="0.8"/>
+      <circle cx="30" cy="-30" r="3" fill="#1ABC9C" opacity="0.8"/>
+      <circle cx="-70" cy="20" r="3" fill="#1ABC9C" opacity="0.8"/>
+    </g>
+    
+    <!-- Magnifying Glass integrated with globe -->
+    <g id="magnify-glass">
+      <!-- Magnifying glass circle (positioned to overlap globe) -->
+      <circle cx="100" cy="80" r="75" fill="none" stroke="url(#magnifyGradient)" stroke-width="12" opacity="0.85"/>
+      
+      <!-- Inner highlight circle -->
+      <circle cx="100" cy="80" r="72" fill="none" stroke="#1ABC9C" stroke-width="2" opacity="0.3"/>
+      
+      <!-- Magnifying glass handle -->
+      <line x1="160" y1="140" x2="220" y2="200" stroke="url(#magnifyGradient)" stroke-width="12" stroke-linecap="round" opacity="0.85"/>
+      
+      <!-- Handle highlight -->
+      <line x1="160" y1="140" x2="220" y2="200" stroke="#F5A623" stroke-width="4" opacity="0.4" stroke-linecap="round"/>
+    </g>
+    
+    <!-- Accent element - small circles -->
+    <circle cx="-140" cy="-100" r="6" fill="#F5A623" opacity="0.6"/>
+    <circle cx="180" cy="180" r="5" fill="#F5A623" opacity="0.5"/>
+    
+  </g>
+  
+  <!-- Company Name -->
+  <text x="600" y="750" text-anchor="middle" class="main-title">CorpNorm AI</text>
+  
+  <!-- Tagline -->
+  <text x="600" y="830" text-anchor="middle" class="tagline">– Agentic Intelligence</text>
+  
+  <!-- Subtle bottom accent line -->
+  <line x1="300" y1="900" x2="900" y2="900" stroke="#1ABC9C" stroke-width="2" opacity="0.3"/>
+  
+</svg>
