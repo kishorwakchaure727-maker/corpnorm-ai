@@ -34,13 +34,14 @@ RULES = load_rules()
 # 1.5 Logo Loading
 # =========================================================
 
-def load_logo():
-    """Load and return the logo as base64 for reliable display"""
+def load_logo_as_datauri():
+    """Load SVG and convert to data URI for reliable display in Streamlit"""
     logo_path = os.path.join(os.path.dirname(__file__), "corpnorm_ai_logo.svg")
     if os.path.exists(logo_path):
-        with open(logo_path, "r", encoding="utf-8") as f:
-            svg_content = f.read()
-        return svg_content
+        with open(logo_path, "rb") as f:
+            svg_bytes = f.read()
+        svg_base64 = base64.b64encode(svg_bytes).decode()
+        return f"data:image/svg+xml;base64,{svg_base64}"
     return None
 
 # =========================================================
@@ -73,13 +74,9 @@ def main():
     col1, col2 = st.columns([1, 3])
     
     with col1:
-        logo_svg = load_logo()
-        if logo_svg:
-            st.markdown(f"""
-                <div style="display: flex; justify-content: center; width: 100%;">
-                    {logo_svg}
-                </div>
-            """, unsafe_allow_html=True)
+        logo_uri = load_logo_as_datauri()
+        if logo_uri:
+            st.image(logo_uri, width=200)
         else:
             st.markdown("### 🕵️ CorpNorm AI")
     
@@ -100,15 +97,9 @@ def main():
     
     # --- Sidebar Configuration ---
     with st.sidebar:
-        logo_svg = load_logo()
-        if logo_svg:
-            st.markdown(f"""
-                <div style="display: flex; justify-content: center; width: 100%; margin-bottom: 20px;">
-                    <div style="transform: scale(0.6); transform-origin: top center;">
-                        {logo_svg}
-                    </div>
-                </div>
-            """, unsafe_allow_html=True)
+        logo_uri = load_logo_as_datauri()
+        if logo_uri:
+            st.image(logo_uri, width=180)
         st.header("⚙️ Configuration")
         
         # Mode Switch
