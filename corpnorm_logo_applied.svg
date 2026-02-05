@@ -1,0 +1,44 @@
+<svg width="600" height="600" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1ABC9C"/>
+      <stop offset="100%" stop-color="#1F4B99"/>
+    </linearGradient>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="6" stdDeviation="12" flood-color="#1F4B99" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- Background circle -->
+  <g transform="translate(300,200)">
+    <circle r="120" fill="url(#g1)" filter="url(#shadow)"/>
+
+    <!-- Wireframe lines -->
+    <g stroke="rgba(255,255,255,0.85)" stroke-width="3" fill="none">
+      <ellipse rx="120" ry="45" />
+      <ellipse rx="120" ry="80" transform="rotate(15)" />
+      <line x1="-120" y1="0" x2="120" y2="0" stroke-opacity="0.6" />
+      <line x1="0" y1="-120" x2="0" y2="120" stroke-opacity="0.6" />
+    </g>
+
+    <!-- Nodes -->
+    <g>
+      <circle cx="-30" cy="-90" r="6" fill="#F5A623" />
+      <circle cx="70" cy="60" r="5" fill="#F5A623" />
+    </g>
+  </g>
+
+  <!-- Magnifier (overlapping globe) -->
+  <g transform="translate(360,260)">
+    <circle r="70" fill="none" stroke="#1F4B99" stroke-width="12" opacity="0.95"/>
+    <circle r="66" fill="none" stroke="#1ABC9C" stroke-width="2" opacity="0.5"/>
+    <line x1="50" y1="50" x2="110" y2="110" stroke="#1F4B99" stroke-width="14" stroke-linecap="round"/>
+    <line x1="64" y1="64" x2="110" y2="110" stroke="#F5A623" stroke-width="4" stroke-linecap="round" opacity="0.5"/>
+  </g>
+
+  <!-- Wordmark -->
+  <g transform="translate(60,470)">
+    <text x="0" y="0" font-family="Poppins, sans-serif" font-size="42" font-weight="700" fill="#1F4B99">CorpNorm AI</text>
+    <text x="0" y="34" font-family="Inter, sans-serif" font-size="16" fill="#666">Agentic Intelligence for Global Data Verification</text>
+  </g>
+</svg>

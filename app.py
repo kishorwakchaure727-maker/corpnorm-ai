@@ -43,9 +43,22 @@ RULES = load_rules()
 def main():
     st.set_page_config(page_title="CorpNorm AI - Agentic", layout="wide", page_icon="🕵️")
     
-    # --- Simple Header ---
-    st.title("CorpNorm AI")
-    st.markdown("Agentic Intelligence for Global Data Verification")
+    # --- Simple Header with Logo ---
+    def _load_logo_datauri(name="corpnorm_logo_applied.svg"):
+        p = os.path.join(os.path.dirname(__file__), name)
+        if os.path.exists(p):
+            with open(p, "rb") as f:
+                return "data:image/svg+xml;base64," + base64.b64encode(f.read()).decode()
+        return None
+
+    logo_uri = _load_logo_datauri()
+    col_logo, col_text = st.columns([1, 6])
+    with col_logo:
+        if logo_uri:
+            st.image(logo_uri, width=120)
+    with col_text:
+        st.title("CorpNorm AI")
+        st.markdown("Agentic Intelligence for Global Data Verification")
     
     # --- Sidebar Configuration ---
     with st.sidebar:
