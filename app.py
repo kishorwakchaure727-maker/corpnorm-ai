@@ -34,15 +34,7 @@ RULES = load_rules()
 # 1.5 Logo Loading
 # =========================================================
 
-def load_logo_as_datauri():
-    """Load SVG and convert to data URI for reliable display in Streamlit"""
-    logo_path = os.path.join(os.path.dirname(__file__), "corpnorm_ai_logo.svg")
-    if os.path.exists(logo_path):
-        with open(logo_path, "rb") as f:
-            svg_bytes = f.read()
-        svg_base64 = base64.b64encode(svg_bytes).decode()
-        return f"data:image/svg+xml;base64,{svg_base64}"
-    return None
+# (Logo embedding removed — header will be simple text per user request)
 
 # =========================================================
 # 2. Main Streamlit App
@@ -51,55 +43,12 @@ def load_logo_as_datauri():
 def main():
     st.set_page_config(page_title="CorpNorm AI - Agentic", layout="wide", page_icon="🕵️")
     
-    # --- Custom CSS Styling ---
-    st.markdown("""
-        <style>
-        .header-container {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-        .logo-section {
-            display: flex;
-            justify-content: center;
-        }
-        .brand-text {
-            color: #1F4B99;
-        }
-        </style>
-    """, unsafe_allow_html=True)
-    
-    # --- Header with Logo ---
-    col1, col2 = st.columns([1, 3])
-    
-    with col1:
-        logo_uri = load_logo_as_datauri()
-        if logo_uri:
-            st.image(logo_uri, width=200)
-        else:
-            st.markdown("### 🕵️ CorpNorm AI")
-    
-    with col2:
-        st.markdown("### CorpNorm AI - Agentic Edition")
-        st.markdown("**Agentic Intelligence for Global Data Verification**")
-    
-    st.divider()
-    
-    st.markdown(
-        """
-        **Capabilities:**
-        - **Verify**: Visits websites to check if they match the company name.
-        - **Classify**: Reads page content to determine industry.
-        - **Fallback**: Hunts for third-party sources if official site is missing.
-        """
-    )
+    # --- Simple Header ---
+    st.title("CorpNorm AI")
+    st.markdown("Agentic Intelligence for Global Data Verification")
     
     # --- Sidebar Configuration ---
     with st.sidebar:
-        logo_uri = load_logo_as_datauri()
-        if logo_uri:
-            st.image(logo_uri, width=180)
         st.header("⚙️ Configuration")
         
         # Mode Switch
@@ -112,14 +61,6 @@ def main():
             st.info("Premium mode uses SerpAPI (Google) for search and OpenAI for reasoning. High Accuracy.")
             serpapi_key = st.text_input("SerpAPI Key (Google)", value=CONFIG.get("serpapi_key", ""), type="password")
             openai_key = st.text_input("OpenAI API Key", value=CONFIG.get("openai_api_key", ""), type="password")
-        
-        st.divider()
-        st.markdown("""
-            <div style='text-align: center; color: #999; font-size: 12px; margin-top: 20px;'>
-                <p><strong>CorpNorm AI</strong></p>
-                <p>Agentic Intelligence for Global Data Verification</p>
-            </div>
-        """, unsafe_allow_html=True)
     
     # Initialize Agent
     agent = utils.CompanyAgent()
